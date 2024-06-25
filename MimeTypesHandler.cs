@@ -70,7 +70,11 @@ public sealed class MimeTypesHandler
         }
 
         var extension = Path.GetExtension(filePath).ToLowerInvariant();
-        return _mimeTypes.GetValueOrDefault(extension, "application/octet-stream");
+        if (_mimeTypes.TryGetValue(extension, out var mimeType))
+        {
+            return mimeType;
+        }
+        return "application/octet-stream";
     }
 
     public void AddOrUpdateMimeType(string extension, string mimeType)

@@ -7,8 +7,8 @@
 		<owners>Fred Feuerstein</owners>
     <projectUrl>https://github.com/pcantaluppi/MimeTypesMapper</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">MIT</license>
-    <description>A comprehensive library for MIME type mapping based on file extensions.</description>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <description>A simple library for MIME type mapping based on file extensions.</description>
 		<copyright></copyright>
 		<tags>mime types mapping</tags>
 		<dependencies>
@@ -18,11 +18,13 @@
 	<files>
 		<file src="bin\Release\net8.0\MimeTypesMapper.dll" target="lib\net8.0\MimeTypesMapper.dll" />
     <file src="Assets/icon.png" target="icon.png" />
+    <file src="license.txt" target="license.txt" />
 	</files>
   <PropertyGroup>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="bin\Release\net8.0\README.md" Pack="true" PackagePath="\"/>
+    <None Include="bin\Release\net8.0\license.txt" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </package>
