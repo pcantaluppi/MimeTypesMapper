@@ -1,6 +1,6 @@
 # MimeTypesMapper
 
-A comprehensive library for MIME type mapping based on file extensions.
+A simple library for MIME type mapping based on file extensions.
 
 ## Table of Contents
 
@@ -9,8 +9,6 @@ A comprehensive library for MIME type mapping based on file extensions.
 - [Usage](#usage)
   - [Basic Usage](#basic-usage)
   - [Adding and Updating MIME Types](#adding-and-updating-mime-types)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
