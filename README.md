@@ -40,7 +40,7 @@ class Program
 {
     static void Main()
     {
-        var manager = MimeTypeManager.Instance;
+        var manager = MimeTypesHandler.Instance;
 
         // Retrieve MIME type from filename
         Console.WriteLine("MIME type for .pdf: " + manager.GetMimeType("document.pdf"));
@@ -60,7 +60,7 @@ class Program
 {
     static void Main()
     {
-        var manager = MimeTypeManager.Instance;
+        var manager = MimeTypesHandler.Instance;
 
         // Add a new MIME type
         manager.AddOrUpdateMimeType(".custom", "application/custom");
