@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>MimeTypesMapper</id>
+		<version>1.0.0</version>
+		<authors>Fred Feuerstein</authors>
+		<owners>Fred Feuerstein</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>A comprehensive library for MIME type mapping based on file extensions.</description>
+		<copyright></copyright>
+		<tags>mime types mapping</tags>
+		<dependencies>
+			<dependency id="Microsoft.NETCore.App.Ref" version="8.0.0" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="bin\Release\net8.0\MimeTypesMapper.dll" target="lib\net8.0\MimeTypesMapper.dll" />
+	</files>
+</package>
