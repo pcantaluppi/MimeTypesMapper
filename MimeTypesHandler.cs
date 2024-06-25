@@ -3,13 +3,13 @@ using MimeTypesMapper.Infrastructure;
 
 namespace MimeTypesMapper;
 
-public sealed class MimeTypeManager
+public sealed class MimeTypesHandler
 {
-    private static readonly Lazy<MimeTypeManager> _lazyLoader =
-        new(() => new MimeTypeManager(), LazyThreadSafetyMode.ExecutionAndPublication);
+    private static readonly Lazy<MimeTypesHandler> _lazyLoader =
+        new(() => new MimeTypesHandler(), LazyThreadSafetyMode.ExecutionAndPublication);
     private readonly ConcurrentDictionary<string, string> _mimeTypes;
 
-    private MimeTypeManager()
+    private MimeTypesHandler()
     {
         _mimeTypes = new ConcurrentDictionary<string, string>(
             StringComparer.InvariantCultureIgnoreCase
@@ -17,10 +17,11 @@ public sealed class MimeTypeManager
         LoadDefaultMimeTypes();
     }
 
-    public static MimeTypeManager Instance => _lazyLoader.Value;
+    public static MimeTypesHandler Instance => _lazyLoader.Value;
 
     private void LoadDefaultMimeTypes()
     {
+        // Default MIME types
         _mimeTypes.TryAdd(".pdf", "application/pdf");
         _mimeTypes.TryAdd(".jpg", "image/jpeg");
         _mimeTypes.TryAdd(".jpeg", "image/jpeg");
@@ -35,6 +36,30 @@ public sealed class MimeTypeManager
             ".xlsx",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         );
+
+        // Additional MIME types
+        _mimeTypes.TryAdd(".html", "text/html");
+        _mimeTypes.TryAdd(".htm", "text/html");
+        _mimeTypes.TryAdd(".css", "text/css");
+        _mimeTypes.TryAdd(".js", "application/javascript");
+        _mimeTypes.TryAdd(".json", "application/json");
+        _mimeTypes.TryAdd(".xml", "application/xml");
+        _mimeTypes.TryAdd(".txt", "text/plain");
+        _mimeTypes.TryAdd(".csv", "text/csv");
+        _mimeTypes.TryAdd(".zip", "application/zip");
+        _mimeTypes.TryAdd(".tar", "application/x-tar");
+        _mimeTypes.TryAdd(".rar", "application/x-rar-compressed");
+        _mimeTypes.TryAdd(".gif", "image/gif");
+        _mimeTypes.TryAdd(".bmp", "image/bmp");
+        _mimeTypes.TryAdd(".tif", "image/tiff");
+        _mimeTypes.TryAdd(".tiff", "image/tiff");
+        _mimeTypes.TryAdd(".mp3", "audio/mpeg");
+        _mimeTypes.TryAdd(".wav", "audio/wav");
+        _mimeTypes.TryAdd(".mp4", "video/mp4");
+        _mimeTypes.TryAdd(".avi", "video/x-msvideo");
+        _mimeTypes.TryAdd(".mov", "video/quicktime");
+        _mimeTypes.TryAdd(".wmv", "video/x-ms-wmv");
+        _mimeTypes.TryAdd(".flv", "video/x-flv");
     }
 
     public string GetMimeType(string filePath)
@@ -60,8 +85,7 @@ public sealed class MimeTypeManager
             throw new MimeTypeException("MIME type cannot be null or empty.");
         }
 
-        _mimeTypes.AddOrUpdate(extension.ToLowerInvariant(), mimeType,
-            (key, oldValue) => mimeType);
+        _mimeTypes.AddOrUpdate(extension.ToLowerInvariant(), mimeType, (key, oldValue) => mimeType);
         Logger.Log($"MIME type for {extension} updated to {mimeType}");
     }
 
