@@ -1,27 +1,47 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net48</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Version>1.0.2</Version>
+    <PackageProjectUrl>https://github.com/pcantaluppi/MimeTypesMapper</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageIcon>Assets/icon.png</PackageIcon>
+    <IncludeContentInPack>true</IncludeContentInPack>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
     <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="C:\Dev\col\MimeTypesMapper\.editorconfig" />
+    <EditorConfigFiles Remove=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="README.md" />
+    <None Remove="Assets\Icon.png" />
+    <None Remove="LICENSE.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>Assets/icon.png</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="license.txt">
+      <Pack>True</Pack>
+      <PackagePath>LICENSE.txt</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="README.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="C:\Dev\col\MimeTypesMapper\.editorconfig" />
   </ItemGroup>
 
 </Project>

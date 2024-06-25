@@ -70,7 +70,11 @@ public sealed class MimeTypesHandler
         }
 
         var extension = Path.GetExtension(filePath).ToLowerInvariant();
-        return _mimeTypes.GetValueOrDefault(extension, "application/octet-stream");
+        if (_mimeTypes.TryGetValue(extension, out var mimeType))
+        {
+            return mimeType;
+        }
+        return "application/octet-stream";
     }
 
     public void AddOrUpdateMimeType(string extension, string mimeType)
@@ -87,35 +91,5 @@ public sealed class MimeTypesHandler
 
         _mimeTypes.AddOrUpdate(extension.ToLowerInvariant(), mimeType, (key, oldValue) => mimeType);
         Logger.Log($"MIME type for {extension} updated to {mimeType}");
-    }
-
-    public void LoadMimeTypesFromFile(string filePath)
-    {
-        if (!File.Exists(filePath))
-        {
-            throw new MimeTypeException($"The file {filePath} does not exist.");
-        }
-
-        var lines = File.ReadAllLines(filePath);
-        foreach (var line in lines)
-        {
-            var parts = line.Split(',');
-            if (parts.Length == 2)
-            {
-                AddOrUpdateMimeType(parts[0], parts[1]);
-            }
-        }
-        Logger.Log($"MIME types loaded from {filePath}");
-    }
-
-    public void SaveMimeTypesToFile(string filePath)
-    {
-        var lines = new List<string>();
-        foreach (var kvp in _mimeTypes)
-        {
-            lines.Add($"{kvp.Key},{kvp.Value}");
-        }
-        File.WriteAllLines(filePath, lines);
-        Logger.Log($"MIME types saved to {filePath}");
     }
 }
