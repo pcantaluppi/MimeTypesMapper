@@ -2,11 +2,13 @@
 <package >
 	<metadata>
 		<id>MimeTypesMapper</id>
-		<version>1.0.0</version>
+		<version>1.0.2</version>
 		<authors>Fred Feuerstein</authors>
 		<owners>Fred Feuerstein</owners>
+    <projectUrl>https://github.com/pcantaluppi/MimeTypesMapper</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>A comprehensive library for MIME type mapping based on file extensions.</description>
+    <license type="expression">MIT</license>
+    <description>A comprehensive library for MIME type mapping based on file extensions.</description>
 		<copyright></copyright>
 		<tags>mime types mapping</tags>
 		<dependencies>
@@ -15,11 +17,12 @@
 	</metadata>
 	<files>
 		<file src="bin\Release\net8.0\MimeTypesMapper.dll" target="lib\net8.0\MimeTypesMapper.dll" />
+    <file src="Assets/icon.png" target="icon.png" />
 	</files>
   <PropertyGroup>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="readme.md" Pack="true" PackagePath="\"/>
+    <None Include="bin\Release\net8.0\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </package>
