@@ -16,4 +16,10 @@
 	<files>
 		<file src="bin\Release\net8.0\MimeTypesMapper.dll" target="lib\net8.0\MimeTypesMapper.dll" />
 	</files>
+  <PropertyGroup>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </package>
