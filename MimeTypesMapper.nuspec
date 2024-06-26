@@ -2,11 +2,12 @@
 <package >
 	<metadata>
 		<id>MimeTypesMapper</id>
-		<version>1.0.2</version>
+		<version>1.0.5</version>
 		<authors>Fred Feuerstein</authors>
 		<owners>Fred Feuerstein</owners>
     <projectUrl>https://github.com/pcantaluppi/MimeTypesMapper</projectUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <readme>readme.md</readme>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <description>A simple library for MIME type mapping based on file extensions.</description>
 		<copyright></copyright>
@@ -19,12 +20,14 @@
 		<file src="bin\Release\net8.0\MimeTypesMapper.dll" target="lib\net8.0\MimeTypesMapper.dll" />
     <file src="Assets/icon.png" target="icon.png" />
     <file src="license.txt" target="license.txt" />
+    <file src="readme.md" target="readme.md" />
 	</files>
   <PropertyGroup>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="bin\Release\net8.0\README.md" Pack="true" PackagePath="\"/>
+    <None Include="bin\Release\net8.0\readme.md" Pack="true" PackagePath="\"/>
     <None Include="bin\Release\net8.0\license.txt" Pack="true" PackagePath="\"/>
+    <None Include="bin\Release\net8.0\readme.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </package>

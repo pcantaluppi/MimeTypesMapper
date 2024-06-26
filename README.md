@@ -7,8 +7,6 @@ A simple library for MIME type mapping based on file extensions.
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Basic Usage](#basic-usage)
-  - [Adding and Updating MIME Types](#adding-and-updating-mime-types)
 
 ## Introduction
 
@@ -26,47 +24,41 @@ dotnet add package MimeTypesMapper
 
 ## Usage
 
-### Basic Usage
-
 Retrieve MIME types for various file extensions:
 
 ```csharp
-using MimeTypesMapper;
-using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using MimeTypesMapper.Infrastructure;
 
 class Program
 {
     static void Main()
     {
-        var manager = MimeTypesHandler.Instance;
+        // Set up dependency injection
+        var serviceCollection = new ServiceCollection();
+        ConfigureServices(serviceCollection);
 
-        // Retrieve MIME type from filename
-        Console.WriteLine("MIME type for .pdf: " + manager.GetMimeType("document.pdf"));
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+
+        // Configure the logger
+        var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+        if (loggerFactory != null) MimeTypesLogger.ConfigureLogger(loggerFactory);
+
+        // Example usage
+        var mimeTypeHandler = MimeTypesMapper.MimeTypesHandler.Instance;
+        mimeTypeHandler.AddOrUpdateMimeType(".example", "application/example");
+        Console.WriteLine(mimeTypeHandler.GetMimeType("file.example"));
     }
-}
-```
 
-### Adding and Updating MIME Types
-
-Add a new MIME type or update an existing one:
-
-```csharp
-using MimeTypesMapper;
-using System;
-
-class Program
-{
-    static void Main()
+    private static void ConfigureServices(IServiceCollection services)
     {
-        var manager = MimeTypesHandler.Instance;
-
-        // Add a new MIME type
-        manager.AddOrUpdateMimeType(".custom", "application/custom");
-        Console.WriteLine("MIME type for .custom: " + manager.GetMimeType("file.custom"));
-
-        // Update an existing MIME type
-        manager.AddOrUpdateMimeType(".pdf", "application/x-pdf");
-        Console.WriteLine("Updated MIME type for .pdf: " + manager.GetMimeType("document.pdf"));
+        // Configure logging
+        services.AddLogging(config =>
+        {
+            config.AddConsole();
+            config.AddDebug();
+        });
     }
 }
 ```
